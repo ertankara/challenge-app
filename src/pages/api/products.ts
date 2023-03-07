@@ -21,19 +21,30 @@ const uniqueIdGenerator = () => {
 }
 
 // Transforming data to the requested format
-const transformedData: ProductsResponse = {
-  items: (productsData as { items: RawProduct[] }).items.map(item => {
-    return {
-      id: uniqueIdGenerator(),
-      ...item,
-    }
-  })
-};
+const transformedData: Product[] = (productsData as { items: RawProduct[] }).items.map(item => {
+  return {
+    id: uniqueIdGenerator(),
+    ...item,
+  }
+})
 
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ProductsResponse>
 ) {
-  res.status(200).json(transformedData)
+  const { q } = req.query;
+  
+  const data = transformedData.filter((item) => {
+    if (q == null || q?.length === 0) {
+      return true;
+    }
+
+    const regex = new RegExp(q as string);
+    return regex.test(item.name);
+  });
+
+  res.status(200).json({
+    items: data,
+  })
 }
