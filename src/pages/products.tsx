@@ -3,6 +3,9 @@ import useSwr from 'swr';
 import { fetcher } from '../utils/helper'
 import { ProductsResponse } from './api/products';
 
+// Components
+import { Product } from '../components/Product';
+
 type ProductsProps = {}
 
 const API = '/api/products';
@@ -33,11 +36,10 @@ const Products: FC<ProductsProps> = (props) => {
 
       {data?.items.map((item, index) => {
         return (
-          <div key={index}>
-            {item.name}
-            {item.price}
-            {item.description}
-          </div>
+          <Product
+            key={index}
+            productDetails={item}
+          />
         )
       })}
     </div>
