@@ -3,15 +3,15 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import productsData from './products.json';
 
 // How it's coming from the json file
-type RawProduct = {
+export type RawProduct = {
   name: string;
   price: number;
   description: string;
 }
 
-type Product = { id: string } & RawProduct;
+export type Product = { id: string } & RawProduct;
 
-type Response = {
+export type ProductsResponse = {
   items: Product[];
 }
 
@@ -21,7 +21,7 @@ const uniqueIdGenerator = () => {
 }
 
 // Transforming data to the requested format
-const transformedData: Response = {
+const transformedData: ProductsResponse = {
   items: (productsData as { items: RawProduct[] }).items.map(item => {
     return {
       id: uniqueIdGenerator(),
@@ -33,7 +33,7 @@ const transformedData: Response = {
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Response>
+  res: NextApiResponse<ProductsResponse>
 ) {
   res.status(200).json(transformedData)
 }
