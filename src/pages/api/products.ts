@@ -40,7 +40,7 @@ export default function handler(
       return true;
     }
 
-    const regex = new RegExp(q as string);
+    const regex = new RegExp(q as string, 'i');
     return regex.test(item.name);
   });
 

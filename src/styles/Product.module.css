@@ -1,0 +1,21 @@
+.product {
+  width: 33%;
+  height: 350px;
+  background-color: #34a8eb;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 12px;
+}
+
+.name {
+  font-size: 3em;
+  text-align: center;
+}
+
+.description {
+  word-wrap: break-word;
+}
+
+.price {
+  font-size: 1em;
+}

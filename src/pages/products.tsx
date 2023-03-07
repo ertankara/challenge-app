@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import useSwr from 'swr';
 import { fetcher } from '../utils/helper'
 import { ProductsResponse } from './api/products';
+import styles from 'src/styles/ProductsContainer.module.css';
 
 // Components
 import { Product } from '../components/Product';
@@ -34,14 +35,17 @@ const Products: FC<ProductsProps> = (props) => {
         }}
       />
 
-      {data?.items.map((item, index) => {
-        return (
-          <Product
-            key={index}
-            productDetails={item}
-          />
-        )
-      })}
+      <div className={styles.productsContainer}>
+        {data?.items.map((item, index) => {
+          return (
+            <Product
+              key={index}
+              productDetails={item}
+            />
+          )
+        })}
+      </div>
+
     </div>
   )
 }

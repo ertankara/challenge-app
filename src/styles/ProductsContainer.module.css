@@ -1,0 +1,9 @@
+.productsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 50vh;
+  padding: 10px;
+}
